@@ -1,5 +1,6 @@
 <!-- resources/views/books/create.blade.php -->
-
+<!DOCTYPE html>
+<html lang="en">
 <h1>Create New Book</h1>
 
 <form action="{{ route('books.store') }}" method="post">
@@ -14,3 +15,5 @@
     <input type="date" id="published_date" name="published_date"><br><br>
     <input type="submit" value="Create">
 </form>
+
+</html>
