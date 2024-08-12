@@ -20,20 +20,26 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'author' => 'required|string|max:255',
-        ]);
+           
+            $validated = $request->validate([
+                'title' => 'required|string|max:255',
+                'author' => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image file
+            ]);
+        
+            if ($request->hasFile('photo')) {
+                $photoPath = $request->file('photo')->store('photos', 'public'); // Store file in storage/app/public/photos
+                $validated['photo'] = $photoPath; // Add the path to the validated data
+            }
+        
+            Book::create($validated);
+        
+            // Redirect to the index page with a success message
+            return redirect()->route('books.index')->with('success', 'Book created successfully.');
+            
+            dd($request->all());
 
-        Book::create([
-            'title' => $request->input('title'),
-            'author' => $request->input('author'),
-            'description' => $request->input('description'),
-        ]);
-
-        dd($request->all());
-
-        return redirect()->route('books.index')->with('success', 'Book created successfully.');
     }
 
     public function show(book $book)

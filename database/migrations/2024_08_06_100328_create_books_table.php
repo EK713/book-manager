@@ -11,7 +11,7 @@ class CreateBooksTable extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->notNullValue();
+            $table->string('title')->default('Untitled')->change();
             $table->string('author')->notNullValue();
             $table->text('description')->nullable();
             $table->timestamps();
@@ -21,6 +21,25 @@ class CreateBooksTable extends Migration
     public function down()
     {
         Schema::dropIfExists('books');
+        Schema::table('books', function (Blueprint $table) {
+            $table->string('title')->nullable(false)->change();
+        });
+    
     }
+
+    public function up()
+{
+    Schema::table('books', function (Blueprint $table) {
+        $table->string('photo')->nullable(); // Add photo column
+    });
+}
+
+public function down()
+{
+    Schema::table('books', function (Blueprint $table) {
+        $table->dropColumn('photo');
+    });
+}
+
 }
 

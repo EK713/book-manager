@@ -19,6 +19,7 @@
             <th>Title</th>
             <th>Author</th>
             <th>Description</th>
+            <th>Cover</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($books as $book)
@@ -27,6 +28,8 @@
             <td>{{ $book->title }}</td>
             <td>{{ $book->author }}</td>
             <td>{{ $book->description }}</td>
+            <td>{{ $book->photo }}
+            <img src="{{ asset('storage/' . $book->photo) }}" alt="Book Photo" class="img-thumbnail"> </td>
             <td>
                 <form action="{{ route('books.destroy',$book->id) }}" method="POST">
                     <a class="btn btn-info" href="{{ route('books.show',$book->id) }}">Show</a>
