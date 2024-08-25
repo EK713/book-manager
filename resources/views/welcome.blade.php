@@ -32,7 +32,7 @@
     <div class="container">
         <h1>Welcome to Laravel!</h1>
         <p>Your application is ready to go. You can start building your awesome app right now.</p>
-        <a href= "" class="btn btn-primary">Go to Home</a>
+        <a href= "{{ route('register') }}" class="btn btn-primary">Go to Dashboard</a>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

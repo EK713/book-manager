@@ -5,7 +5,6 @@
 @section('content')
 <div class="container mt-5">
     <h1>Show Book</h1>
-    <a href="{{ route('books.index') }}" class="btn btn-secondary">Back</a>
     <div class="card mt-3">
         <div class="card-body">
             <h5 class="card-title">{{ $book->title }}</h5>
@@ -13,5 +12,7 @@
             <p class="card-text">{{ $book->description }}</p>
         </div>
     </div>
+    <br>
+    <a href="{{ route('books.index') }}" class="btn btn-secondary">Back</a>
 </div>
 @endsection

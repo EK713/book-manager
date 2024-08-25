@@ -14,7 +14,11 @@ class CreateBooksTable extends Migration
             $table->string('title')->default('Untitled')->change();
             $table->string('author')->notNullValue();
             $table->text('description')->nullable();
+            $table->image('photo')->nullable(); 
+            $table->unsignedBigInteger('user_id')->nullable()->change();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+           
         });
     }
 
@@ -22,24 +26,10 @@ class CreateBooksTable extends Migration
     {
         Schema::dropIfExists('books');
         Schema::table('books', function (Blueprint $table) {
-            $table->string('title')->nullable(false)->change();
-        });
-    
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
+            $table->string('title')->nullable(false)->change(); 
+            $table->dropColumn('photo');
+            });
     }
-
-    public function up()
-{
-    Schema::table('books', function (Blueprint $table) {
-        $table->string('photo')->nullable(); // Add photo column
-    });
 }
-
-public function down()
-{
-    Schema::table('books', function (Blueprint $table) {
-        $table->dropColumn('photo');
-    });
-}
-
-}
-

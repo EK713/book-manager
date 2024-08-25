@@ -21,6 +21,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('books.create') }}">Add Book</a>
                     </li>
+                    <li>
+                        <a href="{{ route('profile.edit') }}" class="nav-link">Profile</a>
+                    </li>
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                        @csrf
+                        <button type="submit" class="nav-link btn btn-link">Logout</button>
+                    </form>
+                    </li>
                 </ul>
             </div>
         </div>

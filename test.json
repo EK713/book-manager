@@ -1,0 +1,7 @@
+{
+    "grant_type": "client_credentials",
+    "client_id": "7",
+    "client_secret": "dUhgLOOZS7LFB9sO23607m793CeXUmJ0wNX6g3mY",
+    "mail_username": "postman@test.com",
+    "mail_password": "postman123"
+}

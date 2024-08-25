@@ -1,20 +1,25 @@
 <?php
 
-/* namespace App\Models;
+namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+//use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use  HasApiTokens, HasFactory, Notifiable;
 
+    protected $primaryKey = 'id';
+    public $incrementing = true;
+    
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array<int,string>
+     */
      
     protected $fillable = [
         'name',
@@ -22,20 +27,22 @@ class User extends Authenticatable
         'password',
     ];
 
-    /**
+    /** 
      * The attributes that should be hidden for serialization.
      *
-     * @var array<int, string>
+     * @var array<int,string>
+     */
      
     protected $hidden = [
-        'password',
-        'remember_token',
+    'password',
+    'remember_token',
     ];
 
     /**
      * Get the attributes that should be cast.
      *
-     * @return array<string, string>
+     * @return array<string,string>
+     */
      
     protected function casts(): array
     {
@@ -44,5 +51,15 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function createAccessToken($token = 'token name')
+    {
+        return $this->createToken($token)->accessToken;
+    }
+
+    public function books()
+    {
+        return $this->hasMany(Book::class);
+    }
+
 }
-*/
